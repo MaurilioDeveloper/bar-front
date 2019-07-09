@@ -1,0 +1,135 @@
+@import "assets/css/colors.scss";
+
+.btn {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important;
+    border-radius: 4px !important;
+    float: right !important;
+    padding: 0 32px !important;
+    margin-bottom: 10px !important;
+    color: white;
+  }
+  
+  .btn-block {
+    width: 100% !important;
+    padding: 0px !important;
+  }
+  
+  .btn-outline-primary {
+    border: 1px solid #517fd7 !important;
+    color: #517fd7 !important;
+  }
+  
+  .btn-outline-white {
+    border: 1px solid white !important;
+    color: white !important;
+  }
+  
+  .btn-primary {
+    background: $background-button !important;
+    color: white !important;
+  }
+
+  .btn-transparent {
+    background: transparent !important;
+    color: $background-button !important;
+  }
+  
+  .btn-warning {
+    background: $background-button !important;
+    color: white !important;
+  }
+
+  .btn-success {
+    background: rgb(44, 148, 70) !important;
+    color: rgb(255, 255, 255) !important;
+  }
+  
+  .btn-info {
+    background: #d8d8d8 !important;
+    color: white !important;
+  }
+  
+  .btn-full {
+    width: 100%;
+  }
+  
+  .btn-large {
+    padding: 10px 32px !important;
+  }
+  
+  button.bold span {
+    font-weight: 600 !important;
+  }
+  
+  .primary {
+    color: #517fd7 !important;
+  }
+
+  .btn-barigui {
+    height: 40px;
+    background: inherit;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-style: solid;
+    border-radius: 10px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: $background-button;
+    border-color: $background-button;
+    cursor: pointer;
+}
+
+.btn-barigui:disabled {
+  cursor: auto;
+  opacity: 0.5;
+}
+
+.btn-menu {
+  width: 80px;
+  @extend .btn-barigui;
+}
+
+.btn-circle-card {
+  width: 55px;
+  border-color: $background-button;
+  @extend .btn-barigui;
+}
+
+.btn-circle-add {
+  width: 237px;
+  height: 50px;
+  color: white;
+  @extend .btn-barigui;
+}
+
+.btn-circle-back {
+  background: #000000;
+  @extend .btn-circle-add;
+  @extend .btn-barigui;
+}
+
+.btn-circle-listagem {
+  @extend .btn-barigui;
+}
+
+.input-search {
+  width: 300px;
+  height: 40px;
+  background: url(assets/images/search-filter.png);
+  background-repeat: no-repeat;
+  background-position: 95% 45%;
+  background-size: 30px;
+  padding-left: 5%;
+  cursor: auto;
+  color: black;
+  @extend .btn-barigui;
+}
+  
+  @media (max-width: 840px) { 
+    .btn-sm-full {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,142 @@
+<mat-card class="card" fxLayout="column" fxLayoutAlign="center center" fxFlex="100">
+  <div fxLayout="row" fxLayoutGap="20px" fxFlex="100" [ngStyle]="{'width': '60%'}">
+    <mat-vertical-stepper class="stepper" linear #stepper fxFlex="100" fxLayout="column">
+      <mat-step fxFlex="50" fxLayout="column" [stepControl]="verifyChangeStep()"
+        errorMessage="preencha os dados corretamente">
+        <div fxLayoutAlign="center center" fxLayout="column">
+          <ng-template matStepLabel>Confirme os dados do Parceiro</ng-template>
+          <div fxLayout="row" fxFlex="100" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+            fxLayoutAlign="center center">
+            <form [formGroup]="companyForm" fxLayout="column" fxFlex="40">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" [(ngModel)]="company.cnpj" name="cnpj" bariguiMask="99.999.999/9999-99"
+                  placeholder="99.999.999/9999-99" formControlName="cnpj" required>
+                <mat-error *ngIf="company.cnpj && companyForm.get('cnpj').invalid">
+                  Cnpj inválido
+                </mat-error>
+              </mat-form-field>
+            </form>
+            <mat-form-field fxFlex="40">
+              <input matInput [(ngModel)]="company.cep" type="text" [formControl]="cepControl" bariguiMask="99.999-999"
+                name="cep" placeholder="Cep" required>
+            </mat-form-field>
+          </div>
+          <form #form="ngForm" fxLayout="column" [ngStyle]="{'width': '100%'}">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="20px" fxLayoutAlign="center center">
+              <mat-form-field fxFlex="40">
+                <input matInput [(ngModel)]="company.description" [formControl]="descriptionControl" type="text"
+                  name="description" placeholder="Nome da Empresa" required>
+                <mat-error *ngIf="!descriptionControl.valid">
+                  Nome da empresa está acima do limite permitido (255)
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex="40">
+                <input matInput [(ngModel)]="company.state" [formControl]="stateControl" type="text" name="state"
+                  placeholder="Estado" required>
+                <mat-error *ngIf="!stateControl.valid">
+                  Estado está acima do limite permitido (255)
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+              fxLayoutAlign="center center">
+              <mat-form-field fxFlex="40">
+                <input matInput [(ngModel)]="company.city" [formControl]="cityControl" type="text" name="city"
+                  placeholder="Cidade" required>
+                <mat-error *ngIf="!cityControl.valid">
+                  Cidade está acima do limite permitido (255)
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex="40">
+                <textarea matInput [(ngModel)]="company.observation" [formControl]="observationControl"
+                  name="observation" placeholder="Observação" [disabled]="company.id"></textarea>
+                <mat-error *ngIf="!observationControl.valid">
+                  Observação está acima do limite permitido (255)
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+              fxLayoutAlign="center center">
+              <button fxFlex="40" [disabled]="verifyDisableChangeStep()" class="btn-barigui btn-primary"
+                matStepperNext>Próximo</button>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+      <mat-step fxFlex="50" fxLayout="column" [stepControl]="userForm" errorMessage="preencha os dados corretamente">
+        <div fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px">
+          <ng-template matStepLabel>Confirme os dados do Usuário</ng-template>
+          <div fxLayout="row" fxFlex="100" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+            fxLayoutAlign="center center">
+            <form id="frmUser" fxLayout.xs="column" [formGroup]="userForm" fxFlex="40">
+              <mat-form-field fxFlex="100" fxFlex.xs="100">
+                <input matInput type="text" bariguiMask="999.999.999-99" [(ngModel)]="user.cpf" name="cpf"
+                  placeholder="999.999.999-99" formControlName="cpf" required >
+                <mat-error *ngIf="user.cpf && userForm.get('cpf').invalid">
+                  Cpf inválido
+                </mat-error>
+              </mat-form-field>
+            </form>
+            <mat-form-field fxFlex="40">
+              <input matInput fxFlex="100" [(ngModel)]="user.email" [formControl]="emailPartnerControl" type="text"
+                name="email" placeholder="Email" required>
+            </mat-form-field>
+          </div>
+          <form #form="ngForm" fxLayout="column" [ngStyle]="{'width': '100%'}" fxLayoutGap="10px">
+            <div fxLayout="row" fxFlex="20" fxLayoutGap="20px" fxLayoutAlign="center center">
+              <mat-form-field fxFlex="40">
+                <input matInput fxFlex="100" [(ngModel)]="user.name" type="text" name="name" placeholder="Nome Usuário" [formControl]="userPartnerControl" 
+                  required>
+              </mat-form-field>
+              <mat-form-field fxFlex="40">
+                <input matInput fxFlex="100" [(ngModel)]="user.phone" type="text" name="telephone" [formControl]="phonePartnerControl" 
+                  (ngModelChange)="changeMaskPhone($event)" [bariguiMask]="maskPhone" minlength="10"
+                  placeholder="(00)0000-0000" required>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex="20" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+              fxLayoutAlign="center center">
+              <div fxFlex="40">
+                <mat-form-field fxFlex="100">
+                  <input matInput fxFlex="100" [(ngModel)]="user.cep" type="text" name="userCep" placeholder="Cep"  [formControl]="cepPartnerControl" 
+                    bariguiMask="99.999-999" required>
+                </mat-form-field>
+              </div>
+              <div fxFlex="40">
+                <mat-form-field fxFlex="100">
+                  <input matInput fxFlex="100" [(ngModel)]="user.state" type="text" name="userState"  [formControl]="statePartnerControl" 
+                    placeholder="Estado" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="row" fxFlex="20" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+              fxLayoutAlign="center center">
+              <div fxFlex="40">
+                <mat-form-field fxFlex="100">
+                  <input matInput fxFlex="100" [(ngModel)]="user.city" type="text" name="userCity" placeholder="Cidade"  [formControl]="cityPartnerControl" 
+                    required>
+                </mat-form-field>
+              </div>
+              <div fxFlex="40">
+                <!-- <label class="label">Responsável pela empresa?</label>
+                <mat-radio-group aria-label="Responsável pela empresa" fxLayoutGap="20px">
+                  <mat-radio-button value="1">Sim</mat-radio-button>
+                  <mat-radio-button value="2">Não</mat-radio-button>
+                </mat-radio-group> -->
+                <mat-form-field fxFlex="100">
+                  <textarea matInput fxFlex="100" [(ngModel)]="user.observation" name="userObservation"
+                    placeholder="Observação"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+          <div fxLayout="row" fxFlex="20" fxLayoutGap="20px" [ngStyle]="{'width': '100%'}"
+            fxLayoutAlign="center center">
+            <button fxFlex="25" class="btn-barigui btn-primary" matStepperPrevious>Voltar</button>
+            <button fxFlex="25" class="btn-barigui btn-primary" [disabled]="verifyDisableFinish()"  (click)="updateInformations()">Finalizar</button>
+          </div>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+</mat-card>

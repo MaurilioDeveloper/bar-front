@@ -1,0 +1,44 @@
+<div class="container" fxFlex="100" fxLayout="column">
+  <div fxLayout="row">
+    <img src="../../../assets/images/logo.jfif" id="logo"/>
+  </div>
+  <div class="login" id="login" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayoutAlign="center center" fxLayout="row" class="header-login">
+      <span class="span">Lorem ipsum lorem ipsum lorem ipsum lore
+          ipsum lorem ipsum lorem ipsum lorem</span>
+    </div>
+    <div class="bem-vindo">Seja bem-vindo!</div>
+    <!-- <p class="bem-vindo">Por favor identifique-se.</p> -->
+
+    <form id="frmLogin"  [formGroup]="loginForm" novalidate>
+      <p>
+      </p><div class="user-login">
+        <input (change)="validateEmail($event)" #emailLogin type="email" name="email" id="username" placeholder="Email" [ngClass]="error === '' ? '' : 'error-input'" formControlName="email" [(ngModel)]="user.email" required>
+      </div>
+      <p></p>
+      <p>
+      </p><div class="lock-login">
+        <input type="password" name="password" id="password" placeholder="Senha" formControlName="password" [ngClass]="error === '' ? '' : 'error-input'" [(ngModel)]="user.password" required>
+      </div>
+      <p></p>
+      <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex="45">
+            <a class="span" style="text-decoration: underline" (click)="resetPassword()">Recuperar senha</a>
+        </div>
+        <div fxFlex="45">
+            <button mat-button id="sendCredentials" [disabled]="!loginForm.valid || !emailValid"  (click)="login()">Acessar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <!-- <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="center center">
+    <div fxLayout="row"></div>
+    <div fxLayout="row">
+        <span [ngStyle]="{'color': 'white'}">ou não possui acesso ainda?</span>
+    </div>
+    <div fxLayout="row">
+        <button class="btn-login-parceria btn-primary">Iniciar parceria agora mesmo</button>
+    </div>
+  </div> -->
+</div>

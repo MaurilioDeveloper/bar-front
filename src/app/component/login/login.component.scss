@@ -1,0 +1,296 @@
+.background-login {
+    font-family : Arial, Helvetica, Sans-Serif;
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+    background-color: #8f949a;
+    background-position: center;
+  }
+
+  .span {
+      color: #000000 !important;
+  }
+  
+  #logo {
+    position: relative;
+    left: 37%;
+    width: 103px;
+    height: 56px;
+    text-align: center;
+  }
+  
+  .user-login {
+    position: relative;
+    width: 32px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background: url(../../../assets/images/user-login.png);
+    margin: 0;
+  }
+  
+  .lock-login {
+    position: relative;
+    width: 32px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background: url(../../../assets/images/lock-login.png);
+    padding: 0;
+    margin: 0;
+  }
+  
+  .container {
+    min-height: 95vh;
+    justify-content: center;
+  }
+  
+  .header-login {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .bem-vindo {
+    width: 100%;
+    color: #3185EC;
+    font-size: 17px;
+    text-align: center;
+    line-height: 10px;
+  }
+  
+  p.bem-vindo {
+    width: 100%;
+    position: relative;
+    color: #727376;
+    font-size: 13px;
+    text-align: center;
+    bottom: 10px;
+    line-height: 20px;
+  }
+  
+  .login {
+    position: relative;
+    margin: 0 auto;
+    padding: 40px 30px 40px;
+    width: 355px;
+    background: white;
+    // -webkit-border-radius: 3px; /* Safari and Chrome*/
+    // -moz-border-radius: 3px; /* Firefox */
+    // border-bottom-right-radius: 4em;
+    // -webkit-border-bottom-right-radius: 4em; /* Safari and Chrome*/
+    // -moz-border-bottom-right-radius: 4em; /* Firefox */
+    // border-top-left-radius: 4em;
+    // -webkit-border-top-left-radius: 4em; /* Safari and Chrome*/
+    // -moz-border-top-left-radius: 4em; /* Firefox */
+    box-shadow: 0 0 70px rgba(255, 255, 255, 0.5), 0 1px 2px
+      rgba(0, 0, 0, 0.3);
+    /* Opera 10.5+, future browsers and IE6+ using IE-CSS3 */
+    -webkit-box-shadow: 0 0 70px rgba(255, 255, 255, 0.5), 0 1px 2px
+      rgba(0, 0, 0, 0.3); /* Safari and Chrome */
+    -moz-box-shadow: 0 0 70px rgba(255, 255, 255, 0.5), 0 1px 2px
+      rgba(0, 0, 0, 0.3); /* Firefox */
+  }
+  
+  
+  .login p {
+    margin: 20px 0 0;
+  }
+  
+  .login input[type=email], .login input[type=password] {
+    width: 250px;
+  }
+  
+  .login p>input[type="email"]:focus, .login p>input[type="password"] {
+    margin-top: 0;
+    margin-bottom: 0;
+    outline: none;
+  }
+  
+  .login p.submit {
+    text-align: center;
+  }
+  
+  a {
+    color: #c9c9c9;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+  
+  :-moz-placeholder {
+    color: #c9c9c9 !important;
+    font-size: 13px;
+    background-color: #fff;
+  }
+  
+  ::-webkit-input-placeholder {
+    color: #ccc;
+    font-size: 13px;
+    background-color: #fff;
+  }
+  
+  input {
+    font-family: 'sans-serif', Lucida Grande, Verdana, Tahoma;
+    font-size: 14px;
+  }
+  
+  input[type=email], input[type=password] {
+    margin: 0;
+    margin-left: 36px;
+    padding: 0 10px;
+    width: 200px;
+    height: 34px;
+    color: #404040;
+    background: #fff;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    -moz-outline-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+    outline: none;
+  }
+  
+  input[type=email]:focus, input[type=password]:focus {
+    border-color: none !important;
+    outline-color: none !important;
+    outline-offset: 0;
+  }
+  
+  input[readonly] {
+    -webkit-box-shadow: 0 0 0 50px #DCDCDC inset;
+    box-shadow: 0 0 0 50px #DCDCDC inset;
+    -webkit-text-fill-color: #333;
+    color: #333;
+  }
+  
+  input[type=email]:focus, input[type=password]:focus {
+    border-color: #7dc9e2;
+    outline-color: #dceefc;
+    outline-offset: 0;
+  }
+  
+  button#sendCredentials {
+    padding: 0 18px;
+    height: 26px;
+    width: 105px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    background: #000000;
+    line-height: 1%;
+    border-radius: 2px;
+    outline: 0 none;
+    box-sizing: content-box;
+    box-shadow: none;
+  }
+
+  button#sendCredentials:disabled {
+    opacity: 0.7;
+  }
+  
+  input[type=submit]:hover, input[type=button]:hover {
+    padding: 0 18px;
+    height: 26px;
+    width: 105px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    background: #0266C9;
+    outline: 0;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:active {
+    background: #205CA8;
+  }
+  
+  input[type=submit]:disabled, input[type=button]:disabled {
+    color: #fff;
+    background: #005AB2;
+    font-size: 12px;
+  }
+  
+  .helpmsg {
+    font-weight: bold;
+    display: block;
+    font-size: 11px;
+    text-align: center;
+  }
+  
+  .footer-login:visited, .copyrigth-login:visited, .footer-login:focus,
+    .copyrigth-login:focus {
+    outline: none;
+  }
+  
+  .footer-login .copyrigth-login {
+    color: #fff;
+    font-size: 90%;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: #0066CC;
+  }
+  
+  .footer-login a .copyrigth-login a {
+    color: #fff;
+    font-size: 90%;
+    text-align: center;
+    text-decoration: none !important;
+    outline: none;
+  }
+  
+  .footer-login .copyrigth-login:hover {
+    color: #005AB2;
+    font-size: 90%;
+    text-align: center;
+    bottom: 5px;
+    text-decoration: none;
+    outline: none;
+  }
+  
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:-webkit-any-link {
+    color: #c9c9c9 !important;
+    text-decoration: none;
+    cursor: pointer !important;
+  }
+  
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+  
+  .j_enter {
+    color: #fff;
+  }
+  
+  .btn-login-parceria {
+    width: 310px;
+    height: 40px;
+    background: inherit !important;
+    background-color: transparent !important;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(237, 185, 26, 1);
+    border-radius: 28px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #EDB91A !important;
+  }
+
+  .error-input {
+    border-color: red !important;
+    outline-color: red !important;
+  }
+  .warning {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+  }

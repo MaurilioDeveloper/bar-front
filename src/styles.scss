@@ -1,0 +1,83 @@
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/theming';
+@import "assets/css/buttons.scss";
+@import "assets/css/colors.scss";
+@import "assets/css/fonts.scss";
+@import "assets/css/inputs.scss";
+@import "assets/css/mixins.scss";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+$font-config: mat-typography-config();
+
+body {
+    background: $background-color;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Nunito', Helvetica, sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 46px;
+    color: #333447;
+    line-height: 10px;
+}
+
+h2 {
+    line-height: 30px;
+}
+
+p {
+    font-family: 'Nunito', Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    color: #333447;
+}
+
+.dados-crud {
+    background-color: $gray-color;
+    box-shadow: none !important;
+    margin-top: -1%;
+}
+
+.fieldset-create {
+    width: 80%;
+    border: 1px solid $blue-color; 
+}
+
+.card-content {
+    margin-top: 1%;
+    width: 70%;
+    border-bottom: 15px solid $blue-color;
+    border-radius: 15px !important;
+    box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 3px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 3px rgba(0, 0, 0, 0.12) !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .card-content-mobile {
+        width: 100% !important;
+    }
+}
+
+.card {
+    width: 100%;
+}
+
+.header-crud-title {
+    width: 80%;
+    background-color: $blue-color;
+    margin: 0px;
+    color: white;
+}
+
+mat-card-content {
+    margin-bottom: 4px !important;
+}

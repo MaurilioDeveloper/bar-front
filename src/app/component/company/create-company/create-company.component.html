@@ -1,0 +1,103 @@
+<div fxLayout="column" fxFlex="100">
+  <app-header-crud fxFlex="20" [title]="'Cadastrar Parceiro'" [dsButton]="'Voltar'"></app-header-crud>
+  <!-- <div fxLayout="column" fxFlex="55" fxLayoutAlign="center center" [ngStyle]="{'height': '100%'}"> -->
+  <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
+  <mat-card class="dados-crud card" fxLayout="column" fxLayoutAlign="center center" fxFlex="65">
+    <!-- <div class="header-crud-title" fxLayout="row" fxLayoutAlign="center center" fxFlex="16">
+      <div class="your-title">
+        Formulário Cadastro de Parceiros
+      </div>
+    </div> -->
+    <mat-card fxFlex="90" class="card-content card-content-mobile" fxLayout="column">
+      <mat-card-content fxFlex="100" fxLayout="column" fxLayoutGap="5px" fxLayoutGap.xs="0px">
+        <!-- <form fxFlex="100" fxLayout="column" fxLayoutGap="20px" id="frmCompany" [formGroup]="companyForm"> -->
+        <div fxLayout="column" fxFlex="5"></div>
+        <div fxLayout="column" fxFlex="15" fxFlex.xs="20">
+          <div fxLayout="row" fxLayout.xs="column" fxFlex="100" fxFlex.xs="50" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxLayoutGap="20px" fxLayoutGap.xs="0px">
+            <!-- <form fxLayoutGap="20px" fxFlex="100"> -->
+            <!-- <input type="text" name="cpf" [(ngModel)]="cpf" [cpf]="cpf"/>
+              <input [cnpj]="cnpj" #cnpjInput="ngModel" 
+              [(ngModel)]="cnpj" type="text" name="cnpj" placeholder="99.999.999/9999-99"
+              required> -->
+            <form id="frmCompany" fxLayout.xs="row" [formGroup]="companyForm" fxFlex="40" fxFlex.xs="100">
+              <mat-form-field fxFlex="100" fxFlex.xs="100">
+                <input matInput type="text" [(ngModel)]="company.cnpj" name="cnpj" bariguiMask="99.999.999/9999-99"
+                  placeholder="99.999.999/9999-99" (blur)="buscaCompanyByCnpj()" formControlName="cnpj"
+                  required>
+                  <mat-error *ngIf="company.cnpj && companyForm.get('cnpj').invalid" fxHide.xs="true">
+                    Cnpj inválido
+                  </mat-error>
+              </mat-form-field>
+            </form>
+            <mat-form-field fxFlex="40" fxFlex.xs="100" *ngFor="let user of company.usersDto">
+              <input matInput [(ngModel)]="user.email" type="email" name="email" [formControl]="emailControl" placeholder="Email primeiro acesso"
+                [disabled]="company.id" required>
+                <mat-error *ngIf="!emailControl.valid">
+                  Email inválido
+                </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- </form> -->
+        </div>
+        <form id="frm2" #form="ngForm" fxFlex="55" fxFlex.xs="75" fxLayout="column" fxLayoutGap="10px"
+            fxLayoutGap.xs="0px" novalidate>
+          <div fxLayout="row" fxLayout.xs="column" fxFlex="25" fxFlex.xs="30" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxLayoutGap="20px" fxLayoutGap.xs="15px">
+              <mat-form-field fxFlex="40" fxFlex.xs="40">
+                <input matInput [(ngModel)]="company.description" [formControl]="descriptionControl" type="text" name="description"
+                  placeholder="Nome da Empresa" required>
+                  <mat-error *ngIf="!descriptionControl.valid">
+                    Nome da empresa está acima do limite permitido (255)
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex="40" fxFlex.xs="100" *ngFor="let user of company.usersDto">
+                <input matInput [(ngModel)]="user.name" [formControl]="nameControl" type="text" name="userName" placeholder="Nome do Responsável"
+                  [disabled]="company.id" required>
+                  <mat-error *ngIf="!nameControl.valid">
+                    Nome do usuario está acima do limite permitido (255)
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxFlex="25" fxFlex.xs="35" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxLayoutGap="20px"  >
+              <mat-form-field fxFlex="40" fxFlex.xs="20">
+                <input matInput minlength="8" [(ngModel)]="company.cep" type="text" bariguiMask="99.999-999" name="cep" placeholder="Cep"
+                  required>
+              </mat-form-field>
+              <mat-form-field fxFlex="40" *ngFor="let user of company.usersDto" fxFlex.xs="100">
+                <textarea matInput [(ngModel)]="user.observation" [formControl]="observationControl" name="observation" placeholder="Observação"
+                  [disabled]="company.id"></textarea>
+                  <mat-error *ngIf="!stateControl.valid">
+                    Observação está acima do limite permitido (255)
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxFlex="25" fxFlex.xs="15" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+            <mat-form-field fxFlex="40" fxFlex.xs="50">
+              <input matInput [(ngModel)]="company.state" [formControl]="stateControl" type="text" name="state" placeholder="Estado" required>
+              <mat-error *ngIf="!stateControl.valid">
+                Estado está acima do limite permitido (255)
+              </mat-error>
+            </mat-form-field>
+            <div fxFlex="40"></div>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxFlex="25" fxFlex.xs="20" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+            <mat-form-field fxFlex="40" fxFlex.xs="100">
+              <input matInput [(ngModel)]="company.city" [formControl]="cityControl" type="text" name="city" placeholder="Cidade" required>
+              <mat-error *ngIf="!cityControl.valid">
+                Cidade está acima do limite permitido (255)
+              </mat-error>
+            </mat-form-field>
+            <div fxFlex="40" fxHide.xs="true"></div>
+          </div>
+        </form>
+        <div fxLayout="row" fxFlex="30" fxFlex.xs="10" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+          <!-- <button fxFlex="20" class="btn-barigui">Cancelar</button> -->
+          <button fxFlex="40" class="btn-barigui btn-primary" [disabled]="verifyDisableSave()"
+            (click)="saveCompany()">Salvar</button>
+        </div>
+        <!-- </form> -->
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+  <!-- </div> -->
+</div>
+<!-- </div> -->

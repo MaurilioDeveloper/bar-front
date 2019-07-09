@@ -1,0 +1,27 @@
+<app-header-crud [title]="'Financeiro'" [dsButton]="'Adicionar Nota Fiscal'"></app-header-crud>
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-card class="listagem-dados" fxFlex="100">
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="start" fxLayoutGap="20px" fxLayoutGap.xs="5px">          
+          <div fxLayout="column" fxFlex="2"></div>
+          <div fxFlex="22" fxFlex.xs="33">
+            <input  (keyup)="applyFilter($event.target.value)" class="input-search" placeholder="Pesquisar">
+          </div>
+          <div fxFlex="70" fxLayoutAlign="end" fxLayoutGap="10px">
+            <div fxFlex="15" fxFlex.xs="35">
+              <button fxFlex="100" class="btn-circle-listagem">Visualizar</button>
+            </div>
+            <div fxFlex="20" fxFlex.xs="40">
+              <button fxFlex="100" class="btn-circle-listagem">Aprovar nota fiscal</button>
+            </div>
+            <div fxFlex="7" fxFlex.xs="15">
+              <button fxFlex="100" class="btn-barigui"><img src="../../../assets/images/filter.jfif" width="20px"/></button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+  </div>
+  <mat-card class="listagem-dados" fxFlex="90" fxLayout="row" fxLayoutAlign="center center">
+    <app-listagem-financeiro fxFlex="100"></app-listagem-financeiro>
+  </mat-card>
+</div>

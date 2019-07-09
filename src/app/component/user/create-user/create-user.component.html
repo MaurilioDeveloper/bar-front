@@ -1,0 +1,160 @@
+<div fxLayout="column" fxFlex="100">
+  <app-header-crud fxFlex="20" fxFlex.xs="20" [title]="'Cadastrar Usuário'" [dsButton]="'Voltar'"></app-header-crud>
+  <mat-card class="dados-crud card" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start" fxFlex="80"
+    fxFlex.xs="70">
+    <mat-card fxFlex.xs="70" fxFlex="85" class="card-content card-content-mobile" fxLayout="column">
+      <mat-card-content fxFlex="100" fxLayout="column" fxLayoutGap="25px" fxLayoutGap.xs="10px">
+        <!-- <div fxLayout="column" fxFlex="5" fxHide.xs="true"></div> -->
+        <div fxLayout="column" fxFlex="20" fxFlex.xs="60" fxLayoutGap="10px" fxLayoutGap.xs="30px">
+          <div fxLayout="row" fxLayout.xs="column" fxFlex.xs="65" fxFlex="50" fxLayoutAlign="center center"
+            fxLayoutAlign.xs="start" fxLayoutGap="20px" fxLayoutGap.xs="0px">
+            <form id="frmUser" fxLayout.xs="column" [formGroup]="userForm" fxFlex="25" fxFlex.xs="30">
+              <mat-form-field fxFlex="100" fxFlex.xs="100">
+                <input matInput type="text" bariguiMask="999.999.999-99" [(ngModel)]="user.cpf" name="cpf"
+                  placeholder="999.999.999-99" formControlName="cpf" required>
+              </mat-form-field>
+            </form>
+            <mat-error *ngIf="user.cpf && userForm.get('cpf').invalid" fxHide.xs="true">
+              Cpf inválido
+            </mat-error>
+            <form #form="ngForm" fxFlex.gt-sm="70" fxFlex.xs="50" fxLayoutGap="20px" fxLayout.xs="column">
+              <mat-form-field fxFlex="33">
+                <input matInput fxFlex="100" [(ngModel)]="user.email" [formControl]="emailControl" type="text"
+                  name="email" placeholder="Email" required>
+              </mat-form-field>
+              <mat-form-field fxFlex="33">
+                <input matInput fxFlex="100" [(ngModel)]="user.name" type="text" name="name" [formControl]="nameControl" placeholder="Nome Usuário"
+                  required>
+              </mat-form-field>
+              <mat-form-field fxFlex="33">
+                <input matInput fxFlex="100" [(ngModel)]="user.phone" type="text" name="telephone"
+                  (ngModelChange)="changeMaskPhone($event)" [bariguiMask]="maskPhone" minlength="10"
+                  placeholder="(00)0000-0000" required>
+              </mat-form-field>
+            </form>
+          </div>
+          <form fxLayout="row" fxFlex="50" fxFlex.xs="35" fxLayoutAlign="center center" fxLayoutAlign.xs="center center"
+            fxLayoutGap="20px" fxLayoutGap.xs="0px" fxLayout.xs="column">
+            <mat-form-field fxFlex="45" class="total-width">
+              <mat-label>Selecione um parceiro:</mat-label>
+              <mat-select [(ngModel)]="user.companyId" [formControl]="companyControl"
+                (ngModelChange)="selectCompany($event)" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let company of companies" [value]="company.id">
+                  {{company.id}} - {{company.description}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="companyControl.hasError('required')">Por favor, selecione um parceiro</mat-error>
+              <mat-hint>{{companyControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field fxFlex="45" class="total-width" *ngIf="usersLeader.length > 0">
+              <mat-label>Selecione um lider:</mat-label>
+              <mat-select [(ngModel)]="user.userLeaderIdDto" [formControl]="userLeaderControl">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let user of usersLeader" [value]="user.id">
+                  {{user.id}} - {{user.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="companyControl.hasError('required')">Por favor, selecione um parceiro</mat-error>
+              <mat-hint>{{companyControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+          </form>
+        </div>
+        <div fxLayout="row" fxFlex="60" fxFlex.xs="25" [ngStyle.xs]="{'overflow': 'auto'}">
+
+          <mat-list fxLayout="column" fxFlex="100" [ngStyle]="{'height.px': '300', 'overflow': 'auto'}">
+            <div class="" *ngIf="permissionsMaster && permissionsMaster.length > 0">
+              <mat-list-item *ngFor="let permissionMaster of permissionsMaster">
+                <mat-checkbox [checked]="checkPermissionMaster" style="font-weight: 700" class="title-check-box"
+                  (change)="checkAllPermissions($event)">{{permissionMaster.description}}</mat-checkbox>
+              </mat-list-item>
+              <br>
+            </div>
+            <div class="m-l-15" *ngIf="permissionsPropostas && permissionsPropostas.length > 0">
+              <mat-checkbox [checked]="checkAllProposta" (change)="selectAllProposta($event)" class="title-check-box">
+                Proposta</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionProposta of permissionsPropostas">
+                  <mat-checkbox [checked]="isSelectedPermissionPropostas(permissionProposta)"
+                    (change)="selectPermission($event, permissionProposta, 'Propostas')">
+                    {{permissionProposta.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+
+            <div class="m-l-15" *ngIf="permissionsAdministrativo && permissionsAdministrativo.length > 0">
+              <mat-checkbox [checked]="checkAllAdministrativo" (change)="selectAllAdministrativo($event)"
+                class="title-check-box">Administrativo</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionAdministrativo of permissionsAdministrativo">
+                  <mat-checkbox [checked]="isSelectedPermissionAdministrativo(permissionAdministrativo)"
+                    (change)="selectPermission($event, permissionAdministrativo, 'Administrativo')">
+                    {{permissionAdministrativo.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+
+            <div class="m-l-15" *ngIf="permissionsComunicacao && permissionsComunicacao.length > 0">
+              <mat-checkbox [checked]="checkAllComunicacao" (change)="selectAllComunicacao($event)"
+                class="title-check-box">Comunicacao</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionComunicacao of permissionsComunicacao">
+                  <mat-checkbox [checked]="isSelectedPermissionComunicacao(permissionComunicacao)"
+                    (change)="selectPermission($event, permissionComunicacao, 'Comunicação')">
+                    {{permissionComunicacao.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+
+            <div class="m-l-15" *ngIf="permissionsMarketing && permissionsMarketing.length > 0">
+              <mat-checkbox [checked]="checkAllMarketing" (change)="selectAllMarketing($event)" class="title-check-box">
+                Marketing</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionMarketing of permissionsMarketing">
+                  <mat-checkbox [checked]="isSelectedPermissionMarketing(permissionMarketing)"
+                    (change)="selectPermission($event, permissionMarketing, 'Marketing')">
+                    {{permissionMarketing.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+
+            <div class="m-l-15" *ngIf="permissionsFinanceiro && permissionsFinanceiro.length > 0">
+              <mat-checkbox [checked]="checkAllFinanceiro" (change)="selectAllFinanceiro($event)"
+                class="title-check-box">Financeiro</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionFinanceiro of permissionsFinanceiro">
+                  <mat-checkbox [checked]="isSelectedPermissionFinanceiro(permissionFinanceiro)"
+                    (change)="selectPermission($event, permissionFinanceiro, 'Financeiro')">
+                    {{permissionFinanceiro.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+
+            <div class="m-l-15" *ngIf="permissionsTreinamento && permissionsTreinamento.length > 0">
+              <mat-checkbox [checked]="checkAllTreinamento" (change)="selectAllTreinamento($event)"
+                class="title-check-box">Treinamento</mat-checkbox>
+              <div class="m-l-10">
+                <mat-list-item *ngFor="let permissionTreinamento of permissionsTreinamento">
+                  <mat-checkbox [checked]="isSelectedPermissionTreinamento(permissionTreinamento)"
+                    (change)="selectPermission($event, permissionTreinamento, 'Treinamento')">
+                    {{permissionTreinamento.description}}</mat-checkbox>
+                </mat-list-item>
+              </div>
+              <br>
+            </div>
+          </mat-list>
+        </div>
+        <div fxLayout="row" fxFlex="10" fxFlex.xs="12" fxLayoutAlign="center center" fxLayoutGap="20px"
+          fxLayoutGap.xs="5px">
+          <button fxFlex="40" class="btn-barigui btn-primary" [disabled]="verifyDisableSave()"
+            (click)="saveUser()">Salvar</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+</div>

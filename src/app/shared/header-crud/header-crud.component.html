@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutGap="20px" fxFlex="100">
+  <mat-card fxLayoutGap="20px" fxFlex="100" fxLayout="column">
+    <div fxLayout="row" fxFlex="5" fxHide.xs="true"></div>
+    <div class="header-crud" fxLayout="column" fxFlex="30" fxFlex.sm="70" fxFlex.xs="45">
+      <div fxLayout="row" fxLayoutAlign="start start" fxFlex="80" fxFlex.xs="40">
+        <div fxFlex="60">
+          <h2>{{title}}</h2>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="100" fxFlex.sm="40" fxFlex.xs="70" fxLayoutAlign="center end">
+        <button *ngIf="dsButton != 'Voltar'" class="btn-circle-add"
+          [ngStyle.xs]="{'width.px': '70'}">{{dsButton}}</button>
+        <button [routerLink]="['/home']" *ngIf="dsButton == 'Voltar'" class="btn-circle-back"
+          [ngStyle.xs]="{'width.px': '70'}">{{dsButton}}</button>
+      </div>
+    </div>
+    <div fxLayout="row" fxFlex="18" fxFlex.xs="40">
+      <div fxLayout="row" fxFlex="80" fxFlex.xs="100" fxLayoutAlign="start start" [ngStyle]="{'margin-bottom.px': '50'}">
+        <div fxFlex="30" fxFlex.xs="100">
+          <span>
+            <p>ipsum lorem ipsum lorem ipsum lorem ipsum
+              lorem ipsum lorem ipsum lorem</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

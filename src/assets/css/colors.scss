@@ -1,0 +1,67 @@
+$mat-blue-ligth: #00A5DC;
+$mat-blue-dark: #055697;
+$mat-blue: (
+  50: #0090FF,
+  100: #0090FF,
+  200: #0090FF,
+  300: #0090FF,
+  400: #0090FF,
+  500: #0090FF,
+  600: #0090FF,
+  700: #0090FF,
+  800: #0090FF,
+  900: #0090FF,
+  A100: #8fa0af,
+  A200: #9eaab6,
+  A400: #758a9d,
+  A700: #2c6ca8,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define the default theme (same as the example above).
+$candy-app-primary: mat-palette($mat-blue);
+$candy-app-accent:  mat-palette($mat-blue);
+$candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($candy-app-theme);
+@include mat-table-theme($candy-app-theme);
+
+// $background-color: #f6f6f6;
+// $background-color: #f7f7f7;
+$background-color: #000000;
+
+$orange-color: #ff7901;
+$orange-color-dark: #c85e00;
+$gray-color: #f8f8f8;
+$blue-color: #0090FF;
+$dark-gray: #333447;
+$background-button: #000000;
+
+// Label
+$gray-color-label-title: #B1B1BB;
+$black-color-label-value: #282832;
+$gray-table-label: #84848F;
+$dark-gray: #282832;
+
+// Tables
+$gray-color-background-collapse: #EFEFF2;
+$gray-color-border-collapse:#D7D7DC;
+
+//blue's
+$blue-light-border: #00A5DC;

@@ -1,0 +1,22 @@
+<app-header-crud [title]="'Parceiros'" [dsButton]="'Cadastrar Parceiro'"></app-header-crud>
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="dados-crud" fxFlex="100">
+      <div fxLayout="row" fxFlex="100" fxLayoutAlign="start" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+        <div fxLayout="column" fxFlex="2"></div>
+        <div fxFlex="22" fxFlex.xs="33">
+          <input (keyup)="applyFilter($event.target.value)" class="input-search" placeholder="Pesquisar">
+        </div>
+        <div fxFlex="70" fxLayoutAlign="end" fxLayoutGap="10px">
+          <div fxFlex="7" fxFlex.xs="15">
+            <button fxFlex="100" class="btn-barigui"><img src="../../../assets/images/filter.jfif"
+                width="20px" /></button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <mat-card class="dados-crud" fxFlex="90" fxLayout="row" fxLayoutAlign="center center">
+    <app-list-company [ngStyle]="{'width': '100%'}" fxFlex="100"></app-list-company>
+  </mat-card>
+</div>

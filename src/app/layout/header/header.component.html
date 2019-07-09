@@ -1,0 +1,80 @@
+<mat-toolbar id="header" style="height: 55px" *ngIf="currentUser">
+
+  <div fxLayout="row" fxLayoutAlign="start start" fxFlex.sm="85" fxFlex.xs="70" fxFlex="15">
+    <a id="idLogoPath" [routerLink]="['/home']">
+      <img [src]="logoPath" [ngStyle.gt-sm]="{'width': '60%'}" [ngStyle.sm]="{'width': '12%'}" [ngStyle.xs]="{'width': '40%'}">
+    </a>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center" fxFlex.gt-sm="70" fxHide.xs="true" fxHide.sm="true">
+    <div fxFlex="14" *ngIf="verifyAccessMenu()">
+      <span class="menu-header">Propostas</span>
+    </div>
+    <div fxFlex="14" *ngIf="verifyAccessMenu()">
+      <span class="menu-header" [routerLink]="['/financeiro']">Financeiro</span>
+    </div>
+    <div fxFlex="14" *ngIf="verifyAccessMenu()">
+      <span class="menu-header">Treinamento</span>
+    </div>
+    <div fxFlex="14" *ngIf="verifyAccessMenu()">
+      <span class="menu-header">Comunicação</span>
+    </div>
+    <div fxFlex="14" *ngIf="verifyAccessMenu()">
+      <span class="menu-header">Marketing</span>
+    </div>
+    <div fxFlex="14" *ngIf="(accessMenuCompany() || accessMenuUser()) && verifyAccessMenu()">
+      <span class="menu-header" [matMenuTriggerFor]="menu">Configurações</span>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/create-company']" *ngIf="accessMenuCompany()">Parceiros</button>
+        <button mat-menu-item [routerLink]="['/create-user']" *ngIf="accessMenuUser()">Usuários</button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxLayout.lt-sm="column" fxLayout.lt-md="column" fxFlex.sm="15" fxFlex.xs="30" fxFlex="15"
+    fxHide.xs="true" fxHide.sm="true">
+    <span fxLayoutAlign="center center" [ngStyle]="{'color': 'white', 'font-size': '11px'}">Bem Vindo, {{currentUser.name.split(' ')[0]}}</span>
+    <div id="idCabecalho" class="info-usuario" fxLayout="column" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <button mat-button [matMenuTriggerFor]="menuProfile" type="submit">
+          <img src="../../../assets/images/user.png" />
+        </button>
+        <span [matMenuTriggerFor]="menuProfile" class="menu-header">Perfil </span>
+        <mat-menu #menuProfile="matMenu">
+          <button mat-menu-item>Editar</button>
+          <button mat-menu-item (click)="logout()">Sair</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxHide.gt-md="true" style="margin-left: auto;">
+    <div fxLayout="column" fxLayoutAlign="right right">
+      <div fxLayout="row" fxLayoutAlign="right right" fxLayoutGap="20px">
+        <span fxLayoutAlign="center center" [ngStyle]="{'color': 'white', 'font-size': '11px'}">Bem Vindo, {{currentUser.name}}</span>
+        <mat-icon aria-hidden="false" style="color: white" [matMenuTriggerFor]="menu">menu</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngIf="verifyAccessMenu()">Propostas</button>
+          <button mat-menu-item *ngIf="verifyAccessMenu()" [routerLink]="['/financeiro']">Financeiro</button>
+          <button mat-menu-item *ngIf="verifyAccessMenu()">Treinamento</button>
+          <button mat-menu-item *ngIf="verifyAccessMenu()">Comunicação</button>
+          <button mat-menu-item *ngIf="verifyAccessMenu()">Marketing</button>
+
+          <button *ngIf="(accessMenuCompany() || accessMenuUser()) && verifyAccessMenu()" mat-menu-item [matMenuTriggerFor]="menuConfiguracoes">Configurações</button>
+          <mat-menu #menuConfiguracoes="matMenu">
+            <button mat-menu-item [routerLink]="['/create-company']" *ngIf="accessMenuCompany()">Parceiros</button>
+            <button mat-menu-item [routerLink]="['/create-user']" *ngIf="accessMenuUser()">Usuários</button>
+          </mat-menu>
+
+          <button mat-menu-item [matMenuTriggerFor]="menuPerfil">Perfil</button>
+          <mat-menu #menuPerfil="matMenu">
+            <button mat-menu-item *ngIf="verifyAccessMenu()">Editar</button>
+            <button mat-menu-item (click)="logout()">Sair</button>
+          </mat-menu>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+
+</mat-toolbar>

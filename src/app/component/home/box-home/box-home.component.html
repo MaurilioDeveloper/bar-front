@@ -1,0 +1,70 @@
+<mat-card [ngStyle.xs]="{'padding.px': '0'}" fxFlex="100" fxFlex.xs="97" class="item-home" 
+        fxLayoutGap.xs="20px" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="row" fxFlex="30" fxFlex.sm="43">
+        <img [src]="urlImagem" width="89px" height="85px"> 
+      </div>
+      <div fxLayout="row" fxFlex="55" fxFlex.sm="42" fxLayoutAlign="start start">
+        <h2 fxHide.sm="true">{{item}}</h2>
+        <h3 fxHide.sm="false" fxHide="true">{{item}}</h3>
+      </div>
+      <div fxFlex="15" fxFlex.sm="18" fxLayoutAlign="start">
+        <button class="btn-circle-card item-home"  style="margin-top: 50%">+</button>
+      </div>
+      <!-- <img src="../../../assets/images/marketing-financeiro.jpg" width="100px">  -->
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <!-- <div fxLayout="row" fxLayoutAlign="start start">
+        <h2><hr class="pipeTop"/><br/>{{item}}</h2>
+      </div> -->
+      <div *ngFor="let c of array">
+        <div fxLayout="row" *ngIf="item == 'Treinamento'">
+          <div fxLayout="row" style="margin-top: 5%">
+            <vg-player fxFlex="100" *ngIf="item == 'Treinamento'">
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                    <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+                </video>
+            </vg-player>
+          </div>
+        </div>
+        <div fxLayout="row"  fxLayoutAlign="center center">
+          <span fxFlex="70">
+            <p>ipsum lorem ipsum lorem ipsum lorem 
+                ipsum lorem ipsum lorem ipsum lorem
+                ipsum lorem ipsum lorem ipsum lorem
+            </p>
+            <!-- <p> </p> -->
+          </span>
+        </div>
+        <div fxLayout="row" *ngIf="item == 'Marketing'" [ngStyle]="{'margin-top': '10%'}">
+          <div fxFlex="100"  fxLayoutGap="20px">
+            <img width="45%" height="100%" src="../../../assets/images/marketing-financeiro.jpg"/>
+            <img width="45%" height="100%" src="../../../assets/images/marketing-financeiro2.jpg"/>
+          </div>
+          <!-- <vg-player fxFlex="100" >
+              <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                  <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+              </video>
+          </vg-player> -->
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="item == 'Comunicação'">
+          <vg-player fxFlex="100">
+              <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                  <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+              </video>
+          </vg-player>
+        </div>
+      </div>
+    </div>
+    <!-- <div fxFlex="15" fxLayoutAlign="start">
+      <button class="btn-circle-card"  style="margin-top: 50%">+</button>
+    </div> -->
+</mat-card> 
+
+
+
+
+
+
+
+
